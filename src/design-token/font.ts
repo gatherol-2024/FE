@@ -5,10 +5,25 @@ const fontGenerator = (weight: number, size: number) => css`
 `;
 
 const font = {
-  H1: fontGenerator(700, 2.25),
-  H2: fontGenerator(700, 1.75),
-  H3: fontGenerator(600, 1.5),
-  H4: fontGenerator(600, 1.25),
-  H5: fontGenerator(500, 1.125),
+  h1: fontGenerator(700, 2.25),
+  h2: fontGenerator(700, 1.75),
+  h3: fontGenerator(600, 1.5),
+  h4: fontGenerator(600, 1.25),
+  h5: fontGenerator(500, 1.125),
+
+  xs: fontGenerator(500, 0.75),
+  sm: fontGenerator(500, 0.875),
+  base: fontGenerator(500, 1),
+  lg: fontGenerator(500, 1.125),
+  xl: fontGenerator(500, 1.25),
+  "2xl": fontGenerator(500, 1.5),
+  "3xl": fontGenerator(500, 1.875),
+  "4xl": fontGenerator(500, 2.25),
+  "5xl": fontGenerator(500, 3),
+  "6xl": fontGenerator(500, 3.75),
+  "7xl": fontGenerator(500, 4.5),
+  "8xl": fontGenerator(500, 6),
+  "9xl": fontGenerator(500, 8),
+  "10xl": fontGenerator(500, 10),
 };
 export default font;
