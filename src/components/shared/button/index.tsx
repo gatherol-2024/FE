@@ -32,6 +32,7 @@ const StyledButton = styled.button<{ type: ButtonType; size: ButtonSize; color: 
   border-radius: 0.25rem;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
   cursor: pointer;
   ${({ type, color }) => getButtonType(type, color)};
   ${({ size }) => getButtonSize[size]};
