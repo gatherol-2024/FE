@@ -5,12 +5,6 @@ const fontGenerator = (weight: number, size: number) => css`
 `;
 
 const font = {
-  h1: fontGenerator(700, 2.25),
-  h2: fontGenerator(700, 1.75),
-  h3: fontGenerator(600, 1.5),
-  h4: fontGenerator(600, 1.25),
-  h5: fontGenerator(500, 1.125),
-
   xs: fontGenerator(500, 0.75),
   sm: fontGenerator(500, 0.875),
   base: fontGenerator(500, 1),
