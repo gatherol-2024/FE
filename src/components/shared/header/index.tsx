@@ -18,8 +18,8 @@ const Header = () => {
 };
 
 const StyledHeader = styled.div`
-  height: 75px;
-  padding: 0px 50px;
+  height: 5rem;
+  padding: 0px 4rem;
   display: flex;
   align-items: center;
 
@@ -27,13 +27,13 @@ const StyledHeader = styled.div`
   color: white;
   background-color: ${color.dark};
   & img {
-    width: 75px;
+    width: 5rem;
   }
 `;
 const StyledMenu = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.5rem;
 
   & svg {
     font-size: 1.5rem;
