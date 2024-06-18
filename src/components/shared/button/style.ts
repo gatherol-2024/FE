@@ -36,6 +36,14 @@ export const getButtonType = (type: ButtonType, color: CSSProperties["color"]) =
         border: none;
         color: ${color};
       `;
+    case "icon":
+      return css`
+        background-color: ${color};
+        border-radius: 9999px;
+        padding: 1rem;
+        border: none;
+        color: white;
+      `;
   }
 };
 
@@ -46,4 +54,5 @@ export const getButtonSize = {
   lg: sizeGenerator(3.25, 1.25, 7, "lg"),
   xl: sizeGenerator(3.5, 1.5, 8, "xl"),
   full: sizeGenerator(3, 0.5, 9, "base"),
+  icon: font["3xl"],
 };

@@ -4,7 +4,7 @@ import styled, { CSSProperties } from "styled-components";
 import { getButtonSize, getButtonType } from "./style";
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  size: ButtonSize;
+  size?: ButtonSize;
   type?: ButtonType;
   color: CSSProperties["color"];
   state?: ButtonState;
