@@ -4,6 +4,7 @@ const color = {
   darkHover: "#252525",
   white: "#ece8e1",
   text: "#ece8e1",
+  danger: "#ff4c4c",
 };
 
 export default color;
