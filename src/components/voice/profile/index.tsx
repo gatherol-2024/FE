@@ -1,13 +1,18 @@
 import styled from "styled-components";
 import Text from "../../shared/text";
 import color from "../../../design-token/color";
-import { IoMicOffOutline, IoMicOutline } from "react-icons/io5";
-
+import { IoMicOffOutline } from "react-icons/io5";
+import { MdOutlineHeadsetOff } from "react-icons/md";
+import LinkGenerator from "../../../utils/linkGenerator";
+import LinkText from "../../link";
 interface ProfileProps {
   position: "TOP" | "JGL" | "MID" | "BOT" | "SUP";
+  name: string;
+  mic?: boolean;
+  headset?: boolean;
 }
 
-const Profile = ({ position }: ProfileProps) => {
+const Profile = ({ position, mic = true, headset = true, name }: ProfileProps) => {
   return (
     <StyledProfile>
       <ProfileIcon src={`/images/${position}.svg`} />
@@ -17,6 +22,14 @@ const Profile = ({ position }: ProfileProps) => {
       <ChampionLayout>
         <ChampionImage src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg" />
       </ChampionLayout>
+      <DeviceState>
+        {!mic ? <IoMicOffOutline /> : null}
+        {!headset ? <MdOutlineHeadsetOff /> : null}
+      </DeviceState>
+
+      <LinkText target="_blank" href={LinkGenerator(name)} color={color.white} type="lg">
+        {name}
+      </LinkText>
     </StyledProfile>
   );
 };
@@ -24,7 +37,7 @@ const Profile = ({ position }: ProfileProps) => {
 const StyledProfile = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
   align-items: center;
 `;
 
@@ -47,4 +60,17 @@ const ChampionLayout = styled.div`
   align-items: center;
   padding: 0.25rem;
 `;
+
+const DeviceState = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  height: 3rem;
+  & svg {
+    color: ${color.danger};
+    width: 2rem;
+    height: 2rem;
+  }
+`;
+
 export default Profile;
