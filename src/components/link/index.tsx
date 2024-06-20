@@ -17,6 +17,10 @@ const LinkText = ({ children, ...props }: LinkProps) => {
 
 const StyledLink = styled.a`
   text-decoration: none;
+  transition: 0.2s;
+  &:hover {
+    opacity: 80%;
+  }
 `;
 
 export default LinkText;
