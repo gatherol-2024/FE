@@ -3,7 +3,6 @@ const color = {
   dark: "#1c1c1f",
   darkHover: "#252525",
   white: "#ece8e1",
-  text: "#ece8e1",
   danger: "#ff4c4c",
 };
 
