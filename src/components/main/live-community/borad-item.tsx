@@ -37,7 +37,7 @@ const StyledBoardItem = styled.a`
   border-bottom: 1px solid ${color.white};
   transition: 0.2s;
   &:hover {
-    background-color: ${color.darkHover};
+    background-color: ${color["dark/100"]};
   }
 `;
 
