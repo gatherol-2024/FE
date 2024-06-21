@@ -4,6 +4,7 @@ import color from "../../../design-token/color";
 import { IoMicOffOutline } from "react-icons/io5";
 import { MdOutlineHeadsetOff } from "react-icons/md";
 import LinkGenerator from "../../../utils/linkGenerator";
+import { CiMenuKebab } from "react-icons/ci";
 import LinkText from "../../link";
 interface ProfileProps {
   position: "TOP" | "JGL" | "MID" | "BOT" | "SUP";
@@ -26,10 +27,11 @@ const Profile = ({ position, mic = true, headset = true, name }: ProfileProps) =
         {!mic ? <IoMicOffOutline /> : null}
         {!headset ? <MdOutlineHeadsetOff /> : null}
       </DeviceState>
-
-      <LinkText target="_blank" href={LinkGenerator(name)} color={color.white} type="lg">
-        {name}
-      </LinkText>
+      <NameMenu>
+        <LinkText target="_blank" href={LinkGenerator(name)} color={color.white} type="lg">
+          {name}
+        </LinkText>
+      </NameMenu>
     </StyledProfile>
   );
 };
@@ -71,6 +73,12 @@ const DeviceState = styled.div`
     width: 2rem;
     height: 2rem;
   }
+`;
+
+const NameMenu = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
 
 export default Profile;
