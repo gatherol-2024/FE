@@ -11,9 +11,10 @@ interface ProfileProps {
   name: string;
   mic?: boolean;
   headset?: boolean;
+  volume?: number;
 }
 
-const Profile = ({ position, mic = true, headset = true, name }: ProfileProps) => {
+const Profile = ({ position, mic = true, headset = true, name, volume = 0 }: ProfileProps) => {
   return (
     <StyledProfile>
       <ProfileIcon src={`/images/${position}.svg`} />
@@ -22,6 +23,7 @@ const Profile = ({ position, mic = true, headset = true, name }: ProfileProps) =
       </Text>
       <ChampionLayout>
         <ChampionImage src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg" />
+        <MicVolume volume={volume} />
       </ChampionLayout>
       <DeviceState>
         {!mic ? <IoMicOffOutline /> : null}
@@ -53,14 +55,25 @@ const ChampionImage = styled.img`
   width: 8rem;
   height: 8rem;
   border-radius: 9999rem;
+  z-index: 2;
 `;
 const ChampionLayout = styled.div`
   display: flex;
   border-radius: 9999px;
-  background-color: ${color.white};
+  position: relative;
   justify-content: center;
   align-items: center;
   padding: 0.25rem;
+  background-color: ${color.white};
+`;
+const MicVolume = styled.div<{ volume: number }>`
+  transition: 0.3s;
+  opacity: ${({ volume }) => `${volume}%`};
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background-color: ${color.success};
 `;
 
 const DeviceState = styled.div`
