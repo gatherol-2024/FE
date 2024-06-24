@@ -4,6 +4,7 @@ const color = {
   "dark/100": "#252525",
   white: "#ece8e1",
   danger: "#ff4c4c",
+  success: "#20c997",
 };
 
 export default color;
