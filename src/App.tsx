@@ -4,24 +4,31 @@ import "./App.css";
 import Main from "./pages/main";
 import BoardDetail from "./components/board";
 import VoicePage from "./pages/voice";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+import { useThemeValueStore } from "./store/theme";
+import { dark, light } from "./design-token/color";
 function App() {
+  const theme = useThemeValueStore();
   return (
-    <BrowserRouter>
-      <Header />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/board" element={<BoardDetail />} />
-          <Route path="/voice" element={<VoicePage />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+    <ThemeProvider theme={theme === "dark" ? dark : light}>
+      <BrowserRouter>
+        <Header />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/board" element={<BoardDetail />} />
+            <Route path="/voice" element={<VoicePage />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
 const Layout = styled.div`
   flex: 1;
   display: flex;
+  background-color: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.color};
 `;
 export default App;

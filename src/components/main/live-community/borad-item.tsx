@@ -1,5 +1,4 @@
 import styled, { css, keyframes } from "styled-components";
-import color from "../../../design-token/color";
 import Text from "../../shared/text";
 
 interface BoradItemProps {
@@ -15,13 +14,11 @@ const BoardItem = ({ isLive, title, author, ...props }: BoradItemProps) => {
     <StyledBoardItem>
       <ItemMenu>
         <OnAir isLive={isLive} />
-        <Text color={color.white}>{title}</Text>
+        <Text>{title}</Text>
       </ItemMenu>
       <ItemMenu>
-        <Text type="sm" color={color.white}>
-          {author}
-        </Text>
-        <Text color={color.primary}>
+        <Text type="sm">{author}</Text>
+        <Text>
           {4} / {5}
         </Text>
       </ItemMenu>
@@ -34,11 +31,8 @@ const StyledBoardItem = styled.a`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${color.white};
+  border-bottom: 1px solid white;
   transition: 0.2s;
-  &:hover {
-    background-color: ${color["dark/100"]};
-  }
 `;
 
 const ItemMenu = styled.div`
@@ -57,19 +51,19 @@ const OnAir = styled.div<{ isLive: boolean }>`
           animation: ${OnAirAnimation} 2s ease-in-out infinite;
         `
       : css`
-          background-color: ${color.white};
+          background-color: white;
         `};
 `;
 
 const OnAirAnimation = keyframes`
     0% {
-        background-color: ${color.primary};
+        background-color: ${({ theme }) => theme.primary};
     }
     50% {
-        background-color: ${color.white};
+        background-color: white;
     }
     100% {
-        background-color: ${color.primary};
+        background-color: ${({ theme }) => theme.primary};
     }
 `;
 

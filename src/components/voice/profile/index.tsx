@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import Text from "../../shared/text";
-import color from "../../../design-token/color";
 import { IoMicOffOutline } from "react-icons/io5";
 import { MdOutlineHeadsetOff } from "react-icons/md";
 import LinkGenerator from "../../../utils/linkGenerator";
-import { CiMenuKebab } from "react-icons/ci";
 import LinkText from "../../link";
 interface ProfileProps {
   position: "TOP" | "JGL" | "MID" | "BOT" | "SUP";
@@ -18,9 +16,7 @@ const Profile = ({ position, mic = true, headset = true, name, volume = 0 }: Pro
   return (
     <StyledProfile>
       <ProfileIcon src={`/images/${position}.svg`} />
-      <Text color={color.white} type="3xl">
-        {position}
-      </Text>
+      <Text type="3xl">{position}</Text>
       <ChampionLayout>
         <ChampionImage src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg" />
         <MicVolume volume={volume} />
@@ -30,7 +26,7 @@ const Profile = ({ position, mic = true, headset = true, name, volume = 0 }: Pro
         {!headset ? <MdOutlineHeadsetOff /> : null}
       </DeviceState>
       <NameMenu>
-        <LinkText target="_blank" href={LinkGenerator(name)} color={color.white} type="lg">
+        <LinkText target="_blank" href={LinkGenerator(name)} type="lg">
           {name}
         </LinkText>
       </NameMenu>
@@ -64,7 +60,7 @@ const ChampionLayout = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.25rem;
-  background-color: ${color.white};
+  background-color: white;
 `;
 const MicVolume = styled.div<{ volume: number }>`
   transition: 0.3s;
@@ -73,7 +69,7 @@ const MicVolume = styled.div<{ volume: number }>`
   width: 100%;
   height: 100%;
   border-radius: 9999px;
-  background-color: ${color.success};
+  background-color: ${(props) => props.theme.success};
 `;
 
 const DeviceState = styled.div`
@@ -82,7 +78,7 @@ const DeviceState = styled.div`
   align-items: center;
   height: 3rem;
   & svg {
-    color: ${color.danger};
+    color: ${(props) => props.theme.danger};
     width: 2rem;
     height: 2rem;
   }

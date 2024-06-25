@@ -6,18 +6,19 @@ type Font = keyof typeof font;
 interface TextProps extends HTMLAttributes<HTMLSpanElement> {
   type?: Font;
   whiteSpace?: CSSProperties["whiteSpace"];
-  color?: CSSProperties["color"];
+  color?: string;
 }
-const Text = ({ color = "black", children, whiteSpace = "wrap", type = "base" }: TextProps) => {
+const Text = ({ color = "text", children, whiteSpace = "wrap", type = "base" }: TextProps) => {
   return (
-    <StyledText style={{ color, whiteSpace }} type={type}>
+    <StyledText style={{ whiteSpace }} color={color} type={type}>
       {children}
     </StyledText>
   );
 };
 
-const StyledText = styled.span<{ type: Font }>`
+const StyledText = styled.span<{ type: Font; color: string }>`
   ${({ type }) => font[type]}
+  color : ${(props) => props.theme[props.color]}
 `;
 
 export default Text;

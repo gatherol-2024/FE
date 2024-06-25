@@ -36,7 +36,7 @@ const useGetUserMedia = () => {
       .catch((err) => console.log(err));
   };
 
-  return { getUserAudio, audio, volume };
+  return { getUserAudio, volume };
 };
 
 export default useGetUserMedia;

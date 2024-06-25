@@ -1,4 +1,4 @@
-import { CSSProperties, css } from "styled-components";
+import { css } from "styled-components";
 import { ButtonType } from "./type";
 import font from "../../../design-token/font";
 type Font = keyof typeof font;
@@ -8,25 +8,25 @@ const sizeGenerator = (height: number, px: number, minWidth: number, fontType: F
   min-width: ${minWidth}rem;
   ${font[fontType]}
 `;
-export const getButtonType = (type: ButtonType, color: CSSProperties["color"]) => {
+export const getButtonType = (type: ButtonType, color: string) => {
   switch (type) {
     case "primary":
       return css`
         color: white;
-        background-color: ${color};
+        background-color: ${({ theme }) => theme[color]};
         border: none;
         &:hover {
           background-color: white;
-          color: ${color};
+          color: ${({ theme }) => theme[color]};
         }
       `;
     case "ghost":
       return css`
-        color: ${color};
+        color: ${({ theme }) => theme[color]};
         background-color: inherit;
-        border: 1px solid ${color};
+        border: 1px solid ${({ theme }) => theme[color]};
         &:hover {
-          background-color: ${color};
+          background-color: ${({ theme }) => theme[color]};
           color: white;
         }
       `;
@@ -34,11 +34,11 @@ export const getButtonType = (type: ButtonType, color: CSSProperties["color"]) =
       return css`
         background-color: inherit;
         border: none;
-        color: ${color};
+        color: ${({ theme }) => theme[color]};
       `;
     case "icon":
       return css`
-        background-color: ${color};
+        background-color: ${({ theme }) => theme[color]};
         border-radius: 9999px;
         padding: 1rem;
         border: none;

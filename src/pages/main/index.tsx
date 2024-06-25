@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Text from "../../components/shared/text";
-import color from "../../design-token/color";
 import Button from "../../components/shared/button";
 import LiveCommunity from "../../components/main/live-community";
 
@@ -9,14 +8,14 @@ const Main = () => {
     <StyledMain>
       <MainInfo>
         <MainText>
-          <Text color={color.white} type="xl">
+          <Text color="white" type="xl">
             리그 오브 레전드를 팀보이스와 함께하세요
           </Text>
-          <Text color={color.white} type="7xl">
+          <Text color="white" type="7xl">
             GATHEROL
           </Text>
           <ButtonOutline>
-            <Button size="xl" color={color.primary}>
+            <Button size="xl" color="primary">
               팀보이스 들어가기
             </Button>
           </ButtonOutline>

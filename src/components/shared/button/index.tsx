@@ -6,7 +6,7 @@ import { getButtonSize, getButtonType } from "./style";
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   type?: ButtonType;
-  color: CSSProperties["color"];
+  color?: string;
   state?: ButtonState;
 }
 
@@ -16,7 +16,7 @@ const Button = ({
   state = "default",
   onClick,
   children,
-  color,
+  color = "white",
   ...props
 }: ButtonProps) => {
   return (
@@ -26,7 +26,7 @@ const Button = ({
   );
 };
 
-const StyledButton = styled.button<{ type: ButtonType; size: ButtonSize; color: CSSProperties["color"] }>`
+const StyledButton = styled.button<{ type: ButtonType; size: ButtonSize; color: string }>`
   outline: none;
   display: flex;
   border-radius: 0.25rem;

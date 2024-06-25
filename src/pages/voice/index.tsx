@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import Profile from "../../components/voice/profile";
 import Button from "../../components/shared/button";
-
 import { IoMic, IoHeadset, IoCall } from "react-icons/io5";
-import color from "../../design-token/color";
 import { useState } from "react";
 import useGetUserMedia from "../../hooks/useGetUserMedia";
 const VoicePage = () => {
   const [device, setDevice] = useState({ mic: true, headset: true });
-  const { audio, getUserAudio, volume } = useGetUserMedia();
+  const { getUserAudio, volume } = useGetUserMedia();
   console.log(volume);
   return (
     <StyledVoice>
@@ -20,13 +18,13 @@ const VoicePage = () => {
         <Profile position="SUP" name="Vitenci#KR1" mic={false} headset={false} />
       </ProfilLayout>
       <VoiceMenu>
-        <Button color={color.white} size="icon" type="icon">
-          <IoHeadset color={color.dark} />
+        <Button size="icon" type="icon">
+          <IoHeadset />
         </Button>
-        <Button color={color.white} size="icon" type="icon">
-          <IoMic color={color.dark} />
+        <Button size="icon" type="icon" onClick={getUserAudio}>
+          <IoMic />
         </Button>
-        <Button color={color.danger} size="icon" type="icon" onClick={getUserAudio}>
+        <Button size="icon" type="icon">
           <IoCall />
         </Button>
       </VoiceMenu>
