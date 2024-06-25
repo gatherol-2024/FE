@@ -18,13 +18,13 @@ const VoicePage = () => {
         <Profile position="SUP" name="Vitenci#KR1" mic={false} headset={false} />
       </ProfilLayout>
       <VoiceMenu>
-        <Button size="icon" type="icon">
+        <Button size="icon" type="icon" color="gray200">
           <IoHeadset />
         </Button>
-        <Button size="icon" type="icon" onClick={getUserAudio}>
+        <Button size="icon" type="icon" color="gray200" onClick={getUserAudio}>
           <IoMic />
         </Button>
-        <Button size="icon" type="icon">
+        <Button size="icon" type="icon" color="danger">
           <IoCall />
         </Button>
       </VoiceMenu>

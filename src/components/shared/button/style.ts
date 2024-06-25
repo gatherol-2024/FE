@@ -9,24 +9,27 @@ const sizeGenerator = (height: number, px: number, minWidth: number, fontType: F
   ${font[fontType]}
 `;
 export const getButtonType = (type: ButtonType, color: string) => {
+  const themeColor = css`
+    ${({ theme }) => theme[color]}
+  `;
   switch (type) {
     case "primary":
       return css`
         color: white;
-        background-color: ${({ theme }) => theme[color]};
+        background-color: ${themeColor};
         border: none;
         &:hover {
           background-color: white;
-          color: ${({ theme }) => theme[color]};
+          color: ${themeColor};
         }
       `;
     case "ghost":
       return css`
-        color: ${({ theme }) => theme[color]};
+        color: ${themeColor};
         background-color: inherit;
-        border: 1px solid ${({ theme }) => theme[color]};
+        border: 1px solid ${themeColor};
         &:hover {
-          background-color: ${({ theme }) => theme[color]};
+          background-color: ${themeColor};
           color: white;
         }
       `;
@@ -34,11 +37,11 @@ export const getButtonType = (type: ButtonType, color: string) => {
       return css`
         background-color: inherit;
         border: none;
-        color: ${({ theme }) => theme[color]};
+        color: ${themeColor};
       `;
     case "icon":
       return css`
-        background-color: ${({ theme }) => theme[color]};
+        background-color: ${themeColor};
         border-radius: 9999px;
         padding: 1rem;
         border: none;

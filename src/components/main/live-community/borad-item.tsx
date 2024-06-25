@@ -31,7 +31,7 @@ const StyledBoardItem = styled.a`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid ${({ theme }) => theme.gray300};
   transition: 0.2s;
 `;
 
@@ -57,7 +57,7 @@ const OnAir = styled.div<{ isLive: boolean }>`
 
 const OnAirAnimation = keyframes`
     0% {
-        background-color: ${({ theme }) => theme.primary};
+        background-color: ${({ theme }) => theme.gray300};
     }
     50% {
         background-color: white;

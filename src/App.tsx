@@ -28,7 +28,8 @@ function App() {
 const Layout = styled.div`
   flex: 1;
   display: flex;
-  background-color: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.color};
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
+  transition: 0.3s;
 `;
 export default App;

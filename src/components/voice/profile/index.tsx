@@ -4,6 +4,7 @@ import { IoMicOffOutline } from "react-icons/io5";
 import { MdOutlineHeadsetOff } from "react-icons/md";
 import LinkGenerator from "../../../utils/linkGenerator";
 import LinkText from "../../link";
+
 interface ProfileProps {
   position: "TOP" | "JGL" | "MID" | "BOT" | "SUP";
   name: string;
@@ -60,7 +61,7 @@ const ChampionLayout = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.25rem;
-  background-color: white;
+  background-color: ${({ theme }) => theme.gray200};
 `;
 const MicVolume = styled.div<{ volume: number }>`
   transition: 0.3s;
@@ -69,7 +70,7 @@ const MicVolume = styled.div<{ volume: number }>`
   width: 100%;
   height: 100%;
   border-radius: 9999px;
-  background-color: ${(props) => props.theme.success};
+  background-color: ${({ theme }) => theme.success};
 `;
 
 const DeviceState = styled.div`
@@ -78,7 +79,7 @@ const DeviceState = styled.div`
   align-items: center;
   height: 3rem;
   & svg {
-    color: ${(props) => props.theme.danger};
+    color: ${({ theme }) => theme.danger};
     width: 2rem;
     height: 2rem;
   }
