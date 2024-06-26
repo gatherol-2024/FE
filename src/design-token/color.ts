@@ -1,26 +1,42 @@
-import { css } from "styled-components";
-
 const commonColor = {
   white: "#ece8e1",
+  black: "#000",
   danger: "#ff4c4c",
   primary: "#f85149",
   success: "#20c997",
-  gray100: "#edf0f3",
-  gray200: "#c5c8cb",
-  gray300: "#9da0a3",
-  gray400: "#75787b",
-  gray500: "#4d5053",
-  gray600: "#25282b",
-  black: "#000",
 };
 
 export const dark = {
   background: "#1c1c1f",
   text: "#ece8e1",
+  gray50: "#25282b",
+  gray100: "#393c3f",
+  gray150: "#4d5053",
+  gray200: "#616466",
+  gray250: "#75787b",
+  gray300: "#86898c",
+  gray350: "#9da0a3",
+  gray400: "#adb0b3",
+  gray450: "#c5c8cb",
+  gray500: "#dae0e3",
+  gray550: "#edf0f3",
+  gray600: "#f6f8fa",
   ...commonColor,
 };
 export const light = {
   background: "#fff",
   text: "#1c1c1c",
+  gray50: "#f6f8fa",
+  gray100: "#edf0f3",
+  gray150: "#dae0e3",
+  gray200: "#c5c8cb",
+  gray250: "#adb0b3",
+  gray300: "#9da0a3",
+  gray350: "#86898c",
+  gray400: "#75787b",
+  gray450: "#616466",
+  gray500: "#4d5053",
+  gray550: "#393c3f",
+  gray600: "#25282b",
   ...commonColor,
 };

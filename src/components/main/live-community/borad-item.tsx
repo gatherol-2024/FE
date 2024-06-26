@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 import Text from "../../shared/text";
 
 interface BoradItemProps {
@@ -18,7 +18,7 @@ const BoardItem = ({ isLive, title, author, ...props }: BoradItemProps) => {
       </ItemMenu>
       <ItemMenu>
         <Text type="sm">{author}</Text>
-        <Text>
+        <Text color="primary">
           {4} / {5}
         </Text>
       </ItemMenu>
@@ -31,8 +31,12 @@ const StyledBoardItem = styled.a`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.gray300};
+  border-bottom: 1px solid ${({ theme }) => theme.gray200};
   transition: 0.2s;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.gray50};
+  }
 `;
 
 const ItemMenu = styled.div`
@@ -48,23 +52,11 @@ const OnAir = styled.div<{ isLive: boolean }>`
   ${({ isLive }) =>
     isLive
       ? css`
-          animation: ${OnAirAnimation} 2s ease-in-out infinite;
+          background-color: ${({ theme }) => theme.danger};
         `
       : css`
-          background-color: white;
+          background-color: ${({ theme }) => theme.gray200};
         `};
-`;
-
-const OnAirAnimation = keyframes`
-    0% {
-        background-color: ${({ theme }) => theme.gray300};
-    }
-    50% {
-        background-color: white;
-    }
-    100% {
-        background-color: ${({ theme }) => theme.primary};
-    }
 `;
 
 export default BoardItem;

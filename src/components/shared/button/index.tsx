@@ -8,6 +8,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   color?: string;
   state?: ButtonState;
+  href?: string;
 }
 
 const Button = ({
@@ -17,14 +18,21 @@ const Button = ({
   onClick,
   children,
   color = "white",
+  href,
   ...props
 }: ButtonProps) => {
   return (
-    <StyledButton color={color} size={size} type={type} onClick={onClick}>
-      {children}
-    </StyledButton>
+    <ButtonLink href={href}>
+      <StyledButton color={color} size={size} type={type} onClick={onClick}>
+        {children}
+      </StyledButton>
+    </ButtonLink>
   );
 };
+
+const ButtonLink = styled.a`
+  text-decoration: none;
+`;
 
 const StyledButton = styled.button<{ type: ButtonType; size: ButtonSize; color: string }>`
   outline: none;

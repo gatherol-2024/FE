@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Text from "../../shared/text";
-import { IoMicOffOutline } from "react-icons/io5";
-import { MdOutlineHeadsetOff } from "react-icons/md";
+import { IoMicOffOutline, IoHeadsetOutline } from "react-icons/io5";
 import LinkGenerator from "../../../utils/linkGenerator";
 import LinkText from "../../link";
 
@@ -24,7 +23,7 @@ const Profile = ({ position, mic = true, headset = true, name, volume = 0 }: Pro
       </ChampionLayout>
       <DeviceState>
         {!mic ? <IoMicOffOutline /> : null}
-        {!headset ? <MdOutlineHeadsetOff /> : null}
+        {!headset ? <IoHeadsetOutline /> : null}
       </DeviceState>
       <NameMenu>
         <LinkText target="_blank" href={LinkGenerator(name)} type="lg">
@@ -61,7 +60,7 @@ const ChampionLayout = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.25rem;
-  background-color: ${({ theme }) => theme.gray200};
+  background-color: ${({ theme }) => theme.gray150};
 `;
 const MicVolume = styled.div<{ volume: number }>`
   transition: 0.3s;

@@ -30,7 +30,7 @@ const StyledCommunity = styled.div`
 
 const LiveBoard = styled.div`
   display: flex;
-  border-top: 1px solid ${({ theme }) => theme.gray300};
+  border-top: 1px solid ${({ theme }) => theme.gray200};
   width: 100%;
   flex-direction: column;
 `;

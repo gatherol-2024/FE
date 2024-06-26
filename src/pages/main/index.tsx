@@ -15,7 +15,7 @@ const Main = () => {
             GATHEROL
           </Text>
           <ButtonOutline>
-            <Button size="xl" color="primary">
+            <Button size="xl" color="primary" href="/voice">
               팀보이스 들어가기
             </Button>
           </ButtonOutline>

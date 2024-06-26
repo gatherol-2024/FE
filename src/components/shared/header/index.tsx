@@ -7,7 +7,9 @@ const Header = () => {
   const [theme, setTheme] = useThemeStore();
   return (
     <StyledHeader>
-      <img src="https://i.namu.wiki/i/4kTJGvpYAXvbT44b-ePbMSkdNuwLCFEUCwWPrIcEYX1LFnemJhrYl9LZd8wWriY-ADdCS3QhPlHNsrlnnWSSfQ.svg"></img>
+      <a href="/">
+        <img src="https://i.namu.wiki/i/4kTJGvpYAXvbT44b-ePbMSkdNuwLCFEUCwWPrIcEYX1LFnemJhrYl9LZd8wWriY-ADdCS3QhPlHNsrlnnWSSfQ.svg"></img>
+      </a>
       <StyledMenu>
         {theme === "light" ? (
           <IoMoonOutline onClick={() => setTheme("dark")} />
@@ -25,7 +27,7 @@ const Header = () => {
 
 const StyledHeader = styled.div`
   background-color: ${({ theme }) => theme.background};
-  height: 5rem;
+  min-height: 5rem;
   padding: 0rem 4rem;
   display: flex;
   align-items: center;
