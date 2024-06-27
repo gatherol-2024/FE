@@ -11,3 +11,7 @@ body {
   height: 100vh;
   flex-direction: column;
 }
+
+a {
+  text-decoration: none;
+}
