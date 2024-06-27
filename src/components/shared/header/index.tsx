@@ -41,7 +41,7 @@ const StyledHeader = styled.div`
 const StyledMenu = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 2rem;
   & svg {
     color: ${({ theme }) => theme.text};
     cursor: pointer;

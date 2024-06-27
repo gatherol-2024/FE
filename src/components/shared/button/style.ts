@@ -33,6 +33,8 @@ export const getButtonType = (type: ButtonType, color: string) => {
         background-color: inherit;
         border: none;
         color: ${themeColor};
+        padding: 0;
+        min-width: 0;
       `;
     case "icon":
       return css`
