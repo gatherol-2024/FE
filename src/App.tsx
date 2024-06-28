@@ -2,11 +2,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/shared/header";
 import "./App.css";
 import Main from "./pages/main";
-import BoardDetail from "./components/board";
+
 import VoicePage from "./pages/voice";
 import styled, { ThemeProvider } from "styled-components";
 import { useThemeValueStore } from "./store/theme";
 import { dark, light } from "./design-token/color";
+import BoardDetail from "./pages/board";
 function App() {
   const theme = useThemeValueStore();
   return (
@@ -16,7 +17,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/board" element={<BoardDetail />} />
+            <Route path="/board/detail" element={<BoardDetail />} />
             <Route path="/voice" element={<VoicePage />} />
           </Routes>
         </Layout>
