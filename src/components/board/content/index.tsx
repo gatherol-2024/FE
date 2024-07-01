@@ -38,7 +38,7 @@ const StyledContent = styled.div`
 `;
 
 const TitleLayout = styled.div`
-  padding: 2rem;
+  padding: 1.5rem;
   border-bottom: ${({ theme }) => theme.gray200};
   display: flex;
   flex-direction: column;
