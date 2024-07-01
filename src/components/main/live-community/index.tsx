@@ -2,7 +2,8 @@ import styled from "styled-components";
 import Text from "../../shared/text";
 import BoardItem from "./borad-item";
 import Dropdown from "../../shared/dropdown";
-
+import Button from "../../shared/button";
+import { IoPencil } from "react-icons/io5";
 const LiveCommunity = () => {
   return (
     <StyledCommunity>
@@ -13,6 +14,10 @@ const LiveCommunity = () => {
           <Dropdown.Item>팀 구하기</Dropdown.Item>
           <Dropdown.Item>잡담</Dropdown.Item>
         </Dropdown>
+        <Button color="primary" type="ghost" size="sm">
+          글 작성
+          <IoPencil />
+        </Button>
       </CommunityMenu>
       <LiveBoard>
         <BoardItem isLive={true} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />

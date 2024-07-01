@@ -31,7 +31,7 @@ const Content = ({ title, author, category, date }: ContentProps) => {
 
 const StyledContent = styled.div`
   width: 100%;
-  height: 500rem;
+  height: 100rem;
   background-color: ${({ theme }) => theme.background50};
   display: flex;
   flex-direction: column;

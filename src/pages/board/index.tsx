@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Content from "../../components/board/content";
 import Sidebar from "../../components/board/sidebar";
-import Comments from "../comments";
+import Comments from "../../components/board/comments";
 
 const BoardDetail = () => {
   return (
