@@ -11,13 +11,16 @@ interface BoradItemProps {
 
 const BoardItem = ({ isLive, title, author, ...props }: BoradItemProps) => {
   return (
-    <StyledBoardItem>
+    <StyledBoardItem href="/board/detail">
       <ItemMenu>
         <OnAir isLive={isLive} />
         <Text>{title}</Text>
       </ItemMenu>
       <ItemMenu>
-        <Text type="sm">{author}</Text>
+        <Text type="sm">
+          {"전체"} | {"10분 전"} | {author}
+        </Text>
+
         <Text color="primary">
           {4} / {5}
         </Text>
