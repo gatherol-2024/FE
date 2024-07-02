@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Text from "../../shared/text";
 import Button from "../../shared/button";
+import CommentsItem from "./item";
 
 const Comments = () => {
   return (
@@ -14,6 +15,16 @@ const Comments = () => {
           댓글 작성
         </Button>
       </CommentsInfo>
+      <CommentsItem
+        author="PodoLove"
+        date="10분 전"
+        reply={[
+          { author: "dohi", date: "지금", comment: "ㅇㅈ" },
+          { author: "dohi", date: "지금", comment: "ㅇㅈ" },
+          { author: "dohi", date: "지금", comment: "ㅇㅈ" },
+        ]}
+        comment="같이 게임 해요"
+      />
     </StyledComments>
   );
 };
@@ -22,12 +33,16 @@ const StyledComments = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
+  gap: 0.75rem;
   background-color: ${({ theme }) => theme.background50};
 `;
 
 const CommentsInfo = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid ${({ theme }) => theme.gray200};
 `;
 
 const InfoText = styled.div`

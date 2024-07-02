@@ -20,7 +20,7 @@ const StyledBoard = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-  gap: 5rem;
+  gap: 1rem;
   padding: 0 4rem 6rem;
 `;
 
