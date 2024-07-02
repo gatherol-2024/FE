@@ -19,7 +19,9 @@ const CommentsItem = ({ author, date, reply, comment }: CommentsItemProps) => {
             {date}
           </Text>
         </CommentInfo>
-        <Text type="sm">{comment}</Text>
+        <Text type="sm" whiteSpace="wrap">
+          {comment}
+        </Text>
       </div>
     </ReplyLayout>
   ));
@@ -48,14 +50,19 @@ const StyledItem = styled.div`
 const CommentItemLayout = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 0.5rem;
+  gap: 0.5rem;
+  padding: 0.75rem;
 `;
 
 const ReplyLayout = styled.div`
   display: flex;
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.75rem;
+
+  & svg {
+    min-height: 1rem;
+    min-width: 1rem;
+  }
 `;
 
 const CommentInfo = styled.div`
