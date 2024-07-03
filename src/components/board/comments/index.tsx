@@ -2,8 +2,11 @@ import styled from "styled-components";
 import Text from "../../shared/text";
 import Button from "../../shared/button";
 import CommentsItem from "./item";
+import { useState } from "react";
+import AddComment from "./add";
 
 const Comments = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <StyledComments>
       <CommentsInfo>
@@ -11,16 +14,24 @@ const Comments = () => {
           <Text type="xl">댓글</Text>
           <Text color="primary">{2}</Text>
         </InfoText>
-        <Button size="xs" type="ghost" color="success">
+        <Button size="xs" type="ghost" color="success" onClick={() => setIsOpen(true)}>
           댓글 작성
         </Button>
       </CommentsInfo>
+      <AddLayout>
+        <AddComment isOpen={isOpen} setIsOpen={setIsOpen} />
+      </AddLayout>
       <CommentsItem
         author="PodoLove"
         date="10분 전"
         reply={[
           { author: "dohi", date: "지금", comment: "ㅇㅈ" },
-          { author: "dohi", date: "지금", comment: "ㅇㅈ" },
+          {
+            author: "dohi",
+            date: "지금",
+            comment:
+              "ㅇㅈdadadawdhawidhaiwhdiuㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwawhduahw",
+          },
           { author: "dohi", date: "지금", comment: "ㅇㅈ" },
         ]}
         comment="같이 게임 해요"
@@ -50,5 +61,7 @@ const InfoText = styled.div`
   gap: 0.5rem;
   align-items: center;
 `;
+
+const AddLayout = styled.div``;
 
 export default Comments;
