@@ -42,6 +42,7 @@ const Comments = () => {
 
 const StyledComments = styled.div`
   display: flex;
+  border-radius: 0.5rem;
   flex-direction: column;
   padding: 1.5rem;
   gap: 0.75rem;

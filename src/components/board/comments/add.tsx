@@ -12,7 +12,7 @@ const AddComment = ({ isOpen, setIsOpen }: AddCommentProps) => {
   const [comment, setComment] = useState("");
 
   return (
-    <StyledAddComment style={{ display: isOpen ? "flex" : "none" }}>
+    <StyledAddComment isOpen={isOpen}>
       <TextInput onChange={(e) => setComment(e.target.value)} maxLength={1000} />
       <AddMenu>
         <Text color="gray400" type="sm">
@@ -31,17 +31,21 @@ const AddComment = ({ isOpen, setIsOpen }: AddCommentProps) => {
   );
 };
 
-const StyledAddComment = styled.div`
+const StyledAddComment = styled.div<{ isOpen: boolean }>`
+  transition: 0.3s;
   width: 100%;
+  display: flex;
+  height: ${({ isOpen }) => (isOpen ? 12 : 0)}rem;
   flex-direction: column;
   background-color: ${({ theme }) => theme.background};
+  overflow: hidden;
 `;
 
 const TextInput = styled.textarea`
-  height: 8rem !important;
   padding: 0.5rem;
   resize: none;
   outline: none;
+  flex: 1;
   border-color: ${({ theme }) => theme.gray200};
   border-bottom: none;
 `;

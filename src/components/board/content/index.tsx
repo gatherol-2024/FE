@@ -30,6 +30,7 @@ const Content = ({ title, author, category, date }: ContentProps) => {
 };
 
 const StyledContent = styled.div`
+  border-radius: 0.5rem;
   width: 100%;
   height: 100rem;
   background-color: ${({ theme }) => theme.background50};

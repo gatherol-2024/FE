@@ -19,6 +19,7 @@ const Sidebar = () => {
 };
 
 const StyledSidebar = styled.div`
+  border-radius: 0.5rem;
   position: sticky;
   top: 2rem;
   width: 18rem;
