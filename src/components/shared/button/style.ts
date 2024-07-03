@@ -35,6 +35,7 @@ export const getButtonType = (type: ButtonType, color: string) => {
         color: ${themeColor};
         padding: 0;
         min-width: 0;
+        height: auto;
       `;
     case "icon":
       return css`
