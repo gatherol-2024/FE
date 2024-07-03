@@ -46,6 +46,7 @@ const TextInput = styled.textarea`
   resize: none;
   outline: none;
   flex: 1;
+  background-color: inherit;
   border-color: ${({ theme }) => theme.gray200};
   border-bottom: none;
 `;
