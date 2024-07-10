@@ -3,14 +3,22 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { RecoilRoot } from "recoil";
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-root.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
-  </React.StrictMode>
-);
+
+const enableMocking = async () => {
+  if (process.env.NODE_ENV != "development") return;
+  const { worker } = await import("./mocks/server");
+  return worker.start({ onUnhandledRequest: "bypass" });
+};
+enableMocking().then(() => {
+  const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+  root.render(
+    <React.StrictMode>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </React.StrictMode>
+  );
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
