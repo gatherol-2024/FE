@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/shared/header";
 import "./App.css";
 import Main from "./pages/main";
-
 import VoicePage from "./pages/voice";
 import styled, { ThemeProvider } from "styled-components";
 import { useThemeValueStore } from "./store/theme";
