@@ -2,9 +2,11 @@ import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 import styled from "styled-components";
 import Button from "../button";
 import { useThemeStore } from "../../../store/theme";
+import { useUserValue } from "../../../store/user";
 
 const Header = () => {
   const [theme, setTheme] = useThemeStore();
+  const user = useUserValue();
   return (
     <StyledHeader>
       <a href="/">
@@ -16,10 +18,15 @@ const Header = () => {
         ) : (
           <IoSunnyOutline onClick={() => setTheme("light")} />
         )}
-
-        <Button color="text" size="md" type="text">
-          로그인
-        </Button>
+        {!!user.name ? (
+          <Button color="text" size="md" type="text">
+            {user.name}
+          </Button>
+        ) : (
+          <Button color="text" size="md" type="text">
+            로그인
+          </Button>
+        )}
       </StyledMenu>
     </StyledHeader>
   );
