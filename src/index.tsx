@@ -3,19 +3,23 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const enableMocking = async () => {
   if (process.env.NODE_ENV != "development") return;
   const { worker } = await import("./mocks/server");
   return worker.start({ onUnhandledRequest: "bypass" });
 };
+const queryClient = new QueryClient();
 enableMocking().then(() => {
   const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
   root.render(
     <React.StrictMode>
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </QueryClientProvider>
     </React.StrictMode>
   );
 });
