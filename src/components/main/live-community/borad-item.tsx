@@ -9,7 +9,7 @@ interface BoradItemProps {
   author: string;
 }
 
-const BoardItem = ({ isLive, title, author, ...props }: BoradItemProps) => {
+const BoardItem = ({ isLive, title, author, maxPeople, currentPeople }: BoradItemProps) => {
   return (
     <StyledBoardItem href="/board/detail">
       <ItemMenu>
@@ -22,7 +22,7 @@ const BoardItem = ({ isLive, title, author, ...props }: BoradItemProps) => {
         </Text>
 
         <Text color="primary">
-          {4} / {5}
+          {currentPeople} / {maxPeople}
         </Text>
       </ItemMenu>
     </StyledBoardItem>

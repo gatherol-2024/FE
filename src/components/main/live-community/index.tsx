@@ -4,7 +4,10 @@ import BoardItem from "./borad-item";
 import Dropdown from "../../shared/dropdown";
 import Button from "../../shared/button";
 import { IoPencil } from "react-icons/io5";
+import useGetBoardList from "../../../services/board/queries";
 const LiveCommunity = () => {
+  const { data, isLoading } = useGetBoardList();
+  const BoardList = data?.map((props: any, idx: number) => <BoardItem {...props} key={idx} />);
   return (
     <StyledCommunity>
       <Text type="3xl">라이브 커뮤니티</Text>
@@ -19,16 +22,7 @@ const LiveCommunity = () => {
           <IoPencil />
         </Button>
       </CommunityMenu>
-      <LiveBoard>
-        <BoardItem isLive={true} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />
-        <BoardItem isLive={false} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />
-        <BoardItem isLive={false} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />
-        <BoardItem isLive={false} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />
-        <BoardItem isLive={false} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />
-        <BoardItem isLive={false} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />
-        <BoardItem isLive={false} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />
-        <BoardItem isLive={false} title="게임 같이 하실분 구해요" author="PodoLove#LOVE" />
-      </LiveBoard>
+      <LiveBoard>{BoardList}</LiveBoard>
     </StyledCommunity>
   );
 };
