@@ -7,11 +7,12 @@ interface BoradItemProps {
   maxPeople?: number;
   currentPeople?: number;
   author: string;
+  id: number;
 }
 
-const BoardItem = ({ isLive, title, author, maxPeople, currentPeople }: BoradItemProps) => {
+const BoardItem = ({ isLive, title, author, maxPeople, currentPeople, id }: BoradItemProps) => {
   return (
-    <StyledBoardItem href="/board/detail">
+    <StyledBoardItem href={`/board/detail/${id}`}>
       <ItemMenu>
         <OnAir isLive={isLive} />
         <Text>{title}</Text>
