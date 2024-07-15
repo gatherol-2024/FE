@@ -4,6 +4,8 @@ const commonColor = {
   danger: "#ff4c4c",
   primary: "#f85149",
   success: "#20c997",
+  riot: "#F05B5E",
+  google: "#fff",
 };
 
 export const dark = {
