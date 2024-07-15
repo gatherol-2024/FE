@@ -7,6 +7,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { useThemeValueStore } from "./store/theme";
 import { dark, light } from "./design-token/color";
 import BoardDetail from "./pages/board";
+import LoginPage from "./pages/login";
 function App() {
   const theme = useThemeValueStore();
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/board/detail" element={<BoardDetail />} />
             <Route path="/voice" element={<VoicePage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </Layout>
       </BrowserRouter>
