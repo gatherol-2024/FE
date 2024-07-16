@@ -33,6 +33,7 @@ const Logo = styled.div<{ logo: "riot" | "google" }>`
   width: 3rem;
   height: 3rem;
   background-color: ${({ logo, theme }) => theme[logo]};
+  border: 1px solid ${({ theme }) => theme.gray100};
   svg {
     width: 1.5rem;
     height: 1.5rem;
@@ -41,12 +42,13 @@ const Logo = styled.div<{ logo: "riot" | "google" }>`
 `;
 
 const AccountInfo = styled.div`
-  background-color: ${({ theme }) => theme.gray150};
+  background-color: ${({ theme }) => theme.gray100};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 0.75rem;
-  width: 25rem;
+  width: 20rem;
+  border: 1px solid ${({ theme }) => theme.gray100};
   border-radius: 0rem 0.25rem 0.25rem 0rem;
 `;
 
