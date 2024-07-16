@@ -37,6 +37,7 @@ const ButtonLink = styled.a`
 const StyledButton = styled.button<{ type: ButtonType; size: ButtonSize; color: string }>`
   outline: none;
   display: flex;
+  width: 100%;
   border-radius: 0.25rem;
   justify-content: center;
   align-items: center;
