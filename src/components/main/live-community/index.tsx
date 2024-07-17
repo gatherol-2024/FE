@@ -4,7 +4,7 @@ import BoardItem from "./borad-item";
 import Dropdown from "../../shared/dropdown";
 import Button from "../../shared/button";
 import { IoPencil } from "react-icons/io5";
-import useGetBoardList from "../../../services/board/queries";
+import { useGetBoardList } from "../../../services/board/queries";
 const LiveCommunity = () => {
   const { data, isLoading } = useGetBoardList();
   const BoardList = data?.map((props: any, idx: number) => <BoardItem {...props} key={idx} />);

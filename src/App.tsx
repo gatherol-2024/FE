@@ -17,7 +17,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/board/detail" element={<BoardDetail />} />
+            <Route path="/board/detail/:id" element={<BoardDetail />} />
             <Route path="/voice" element={<VoicePage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>

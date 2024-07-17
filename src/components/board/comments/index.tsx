@@ -5,7 +5,12 @@ import CommentsItem from "./item";
 import { useState } from "react";
 import AddComment from "./add";
 
-const Comments = () => {
+interface CommentsProps {
+  comments?: any[];
+}
+
+const Comments = ({ comments }: CommentsProps) => {
+  const CommentsList = comments?.map((comment: any, idx: number) => <CommentsItem key={idx} {...comment} />);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <StyledComments>
@@ -21,21 +26,7 @@ const Comments = () => {
       <AddLayout>
         <AddComment isOpen={isOpen} setIsOpen={setIsOpen} />
       </AddLayout>
-      <CommentsItem
-        author="PodoLove"
-        date="10분 전"
-        reply={[
-          { author: "dohi", date: "지금", comment: "ㅇㅈ" },
-          {
-            author: "dohi",
-            date: "지금",
-            comment:
-              "ㅇㅈdadadawdhawidhaiwhdiuㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwㅇㅈdadadawdhawidhaiwhdiuawhduahwawhduahw",
-          },
-          { author: "dohi", date: "지금", comment: "ㅇㅈ" },
-        ]}
-        comment="같이 게임 해요"
-      />
+      {CommentsList}
     </StyledComments>
   );
 };

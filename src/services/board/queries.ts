@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getBoardList } from "./api";
+import { getBoardById, getBoardList } from "./api";
 
-const useGetBoardList = () => {
+export const useGetBoardList = () => {
   const { data, ...restQuery } = useQuery({
     queryKey: ["board"],
     queryFn: getBoardList,
@@ -10,4 +10,11 @@ const useGetBoardList = () => {
   return { data, ...restQuery };
 };
 
-export default useGetBoardList;
+export const useGetBoardById = (id: string | undefined) => {
+  const { data, ...restQuery } = useQuery({
+    queryKey: ["board", id],
+    queryFn: () => getBoardById(id),
+  });
+
+  return { data, ...restQuery };
+};

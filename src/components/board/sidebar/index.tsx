@@ -1,19 +1,20 @@
 import styled from "styled-components";
 import Text from "../../shared/text";
-import SideItem from "./item";
+import { useGetBoardList } from "../../../services/board/queries";
 
 const Sidebar = () => {
+  const { data } = useGetBoardList();
+  const BoardList = data?.map(({ title, id }: { title: string; id: number }, idx: number) => (
+    <StyledItem href={`/board/detail/${id}`} key={idx}>
+      {title}
+    </StyledItem>
+  ));
   return (
     <StyledSidebar>
       <SideTitle>
         <Text type="xl">실시간 커뮤니티</Text>
       </SideTitle>
-      <ItemsLayout>
-        <SideItem title="같이 게임 하실분" />
-        <SideItem title="같이 게임 하실분" />
-        <SideItem title="같이 게임 하실분" />
-        <SideItem title="같이 게임 하실분" />
-      </ItemsLayout>
+      <ItemsLayout>{BoardList}</ItemsLayout>
     </StyledSidebar>
   );
 };
@@ -37,4 +38,17 @@ const ItemsLayout = styled.div`
 const SideTitle = styled.div`
   padding: 1rem;
 `;
+
+const StyledItem = styled.a`
+  padding: 0.75rem 1rem;
+  border-top: 1px solid;
+  border-color: ${({ theme }) => theme.gray200};
+  color: ${({ theme }) => theme.text};
+  &:hover {
+    background-color: ${({ theme }) => theme.gray100};
+  }
+  transition: 0.2s;
+  cursor: pointer;
+`;
+
 export default Sidebar;
