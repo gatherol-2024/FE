@@ -23,6 +23,7 @@ const StyledLoginPage = styled.div`
 `;
 
 const LoginInfo = styled.div`
+  border-radius: 0.25rem 0.25rem 0 0;
   padding: 1.5rem 2rem;
   display: flex;
   background-color: ${({ theme }) => theme.gray100};
