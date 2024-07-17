@@ -23,7 +23,7 @@ const Header = () => {
             {user.name}
           </Button>
         ) : (
-          <Button color="text" size="md" type="text">
+          <Button color="text" size="md" type="text" href="/login">
             로그인
           </Button>
         )}
