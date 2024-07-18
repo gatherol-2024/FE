@@ -4,19 +4,17 @@ import Sidebar from "../../components/board/sidebar";
 import Comments from "../../components/board/comments";
 import { getBoardById } from "../../services/board/api";
 import { useParams } from "react-router-dom";
-import { useGetBoardById } from "../../services/board/queries";
+import { useBoard } from "../../services/board/queries";
 
 const BoardDetail = () => {
   const { id } = useParams();
-  const { data } = useGetBoardById(id);
-
-  console.log(data);
+  const { data, commentMutate } = useBoard(id);
   return (
     <StyledBoard>
       <Sidebar />
       <ContentLayout>
         <Content {...data} />
-        <Comments comments={data?.comments} />
+        <Comments addComment={commentMutate} comments={data?.comments} />
       </ContentLayout>
     </StyledBoard>
   );

@@ -7,9 +7,10 @@ import AddComment from "./add";
 
 interface CommentsProps {
   comments?: any[];
+  addComment: (v: any) => void;
 }
 
-const Comments = ({ comments }: CommentsProps) => {
+const Comments = ({ comments, addComment }: CommentsProps) => {
   const CommentsList = comments?.map((comment: any, idx: number) => <CommentsItem key={idx} {...comment} />);
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -17,15 +18,15 @@ const Comments = ({ comments }: CommentsProps) => {
       <CommentsInfo>
         <InfoText>
           <Text type="xl">댓글</Text>
-          <Text color="primary">{2}</Text>
+          <Text color="primary">{comments?.length}</Text>
         </InfoText>
         <Button size="xs" type="ghost" color="success" onClick={() => setIsOpen(true)}>
           댓글 작성
         </Button>
       </CommentsInfo>
-      <AddLayout>
-        <AddComment isOpen={isOpen} setIsOpen={setIsOpen} />
-      </AddLayout>
+
+      <AddComment addComment={addComment} isOpen={isOpen} setIsOpen={setIsOpen} />
+
       {CommentsList}
     </StyledComments>
   );
@@ -36,7 +37,6 @@ const StyledComments = styled.div`
   border-radius: 0.5rem;
   flex-direction: column;
   padding: 1.5rem;
-  gap: 0.75rem;
   background-color: ${({ theme }) => theme.background50};
 `;
 
@@ -53,7 +53,5 @@ const InfoText = styled.div`
   gap: 0.5rem;
   align-items: center;
 `;
-
-const AddLayout = styled.div``;
 
 export default Comments;

@@ -6,9 +6,10 @@ import Button from "../../shared/button";
 interface AddCommentProps {
   isOpen: boolean;
   setIsOpen: (v: boolean) => void;
+  addComment: (v: any) => void;
 }
 
-const AddComment = ({ isOpen, setIsOpen }: AddCommentProps) => {
+const AddComment = ({ isOpen, setIsOpen, addComment }: AddCommentProps) => {
   const [comment, setComment] = useState("");
 
   return (
@@ -22,7 +23,11 @@ const AddComment = ({ isOpen, setIsOpen }: AddCommentProps) => {
           <Button color="danger" type="text" onClick={() => setIsOpen(false)}>
             취소
           </Button>
-          <Button color="success" type="text">
+          <Button
+            color="success"
+            type="text"
+            onClick={() => addComment({ comment: comment, author: "DoHI", date: "방금" })}
+          >
             등록하기
           </Button>
         </AddButton>
@@ -49,6 +54,7 @@ const TextInput = styled.textarea`
   background-color: inherit;
   border-color: ${({ theme }) => theme.gray200};
   border-bottom: none;
+  border-top: none;
 `;
 
 const AddButton = styled.div`
