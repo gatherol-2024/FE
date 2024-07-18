@@ -62,6 +62,12 @@ const boardHandler = [
     const { id } = params;
     return HttpResponse.json(BOARD_DATA[Number(id)]);
   }),
+  http.post("/mock/comment/add/:id", async ({ request, params }) => {
+    const { id } = params;
+    const comment = await request.json();
+    BOARD_DATA[Number(id)].comments.push(comment as any);
+    return new HttpResponse(null, { status: 200 });
+  }),
 ];
 
 export default boardHandler;
