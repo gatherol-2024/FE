@@ -8,6 +8,8 @@ import { useThemeValueStore } from "./store/theme";
 import { dark, light } from "./design-token/color";
 import BoardDetail from "./pages/board";
 import LoginPage from "./pages/login";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const theme = useThemeValueStore();
   return (
@@ -23,6 +25,7 @@ function App() {
           </Routes>
         </Layout>
       </BrowserRouter>
+      <ToastContainer limit={1} />
     </ThemeProvider>
   );
 }
