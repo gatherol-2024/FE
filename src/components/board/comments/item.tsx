@@ -45,6 +45,7 @@ const CommentsItem = ({ author, date, reply, comment }: CommentsItemProps) => {
 const StyledItem = styled.div`
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid ${({ theme }) => theme.gray200};
 `;
 
 const CommentItemLayout = styled.div`
