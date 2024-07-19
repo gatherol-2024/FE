@@ -2,11 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 import Text from "../../shared/text";
 import Button from "../../shared/button";
+import { CommentType } from "../../../types/board";
 
 interface AddCommentProps {
   isOpen: boolean;
   setIsOpen: (v: boolean) => void;
-  addComment: (v: any) => void;
+  addComment: (comment: CommentType) => void;
 }
 
 const AddComment = ({ isOpen, setIsOpen, addComment }: AddCommentProps) => {

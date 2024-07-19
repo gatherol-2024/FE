@@ -1,4 +1,5 @@
 import { server } from "../../api/instance";
+import { CommentType } from "../../types/board";
 
 export const getBoardList = async () => {
   const { data } = await server.get("/board");
@@ -10,6 +11,6 @@ export const getBoardById = async (id: string | undefined) => {
   return data;
 };
 
-export const addComment = async (id: string | undefined, comment: any) => {
+export const addComment = async (id: string | undefined, comment: CommentType) => {
   await server.post(`comment/add/${id}`, comment);
 };

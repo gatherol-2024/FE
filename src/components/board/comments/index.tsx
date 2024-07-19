@@ -4,14 +4,15 @@ import Button from "../../shared/button";
 import CommentsItem from "./item";
 import { useState } from "react";
 import AddComment from "./add";
+import { CommentType } from "../../../types/board";
 
 interface CommentsProps {
-  comments?: any[];
-  addComment: (v: any) => void;
+  comments?: CommentType[];
+  addComment: (comment: CommentType) => void;
 }
 
 const Comments = ({ comments, addComment }: CommentsProps) => {
-  const CommentsList = comments?.map((comment: any, idx: number) => <CommentsItem key={idx} {...comment} />);
+  const CommentsList = comments?.map((comment: CommentType, idx: number) => <CommentsItem key={idx} {...comment} />);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <StyledComments>

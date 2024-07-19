@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addComment, getBoardById, getBoardList } from "./api";
 import { toast } from "react-toastify";
+import { CommentType } from "../../types/board";
 
 export const useGetBoardList = () => {
   const { data, ...restQuery } = useQuery({
@@ -19,7 +20,7 @@ export const useBoard = (id: string | undefined) => {
   });
 
   const { mutate: commentMutate } = useMutation({
-    mutationFn: (comment: any) => addComment(id, comment),
+    mutationFn: (comment: CommentType) => addComment(id, comment),
     mutationKey: ["comment", id],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["board", id], exact: true });

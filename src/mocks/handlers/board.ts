@@ -1,6 +1,7 @@
 import { HttpResponse, http } from "msw";
+import { CommentType } from "../../types/board";
 
-const CommentsGenerator = (author: string, date: string, comment: string, reply?: any[]) => {
+const CommentsGenerator = (author: string, date: string, comment: string, reply?: CommentType[]) => {
   return { author: author, date: date, comment: comment, reply: reply };
 };
 
