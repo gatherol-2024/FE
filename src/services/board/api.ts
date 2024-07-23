@@ -6,7 +6,7 @@ export const getBoardList = async () => {
   return data;
 };
 
-export const getBoardById = async (id: string | undefined) => {
+export const getBoardItem = async (id: string | undefined) => {
   const { data } = await server.get(`/board/${id}`);
   return data;
 };
