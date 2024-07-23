@@ -19,7 +19,9 @@ const Comments = ({ comments, addComment }: CommentsProps) => {
       <CommentsInfo>
         <InfoText>
           <Text type="xl">댓글</Text>
-          <Text color="primary">{comments?.length}</Text>
+          <Text color="primary" data-testid="comment-cnt">
+            {comments?.length}
+          </Text>
         </InfoText>
         <Button size="xs" type="ghost" color="success" onClick={() => setIsOpen(true)}>
           댓글 작성
