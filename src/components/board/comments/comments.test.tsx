@@ -13,7 +13,7 @@ describe("댓글 테스트", () => {
       const element = screen.getByTestId("comment-cnt");
       expect(element).toHaveTextContent("0");
     });
-    it("1.1 댓글 없을 때", () => {
+    it("1.1 댓글 있을 때", () => {
       render(
         <RecoilRoot>
           <Comments comments={MOCK_COMMENTS} addComment={() => {}} />
