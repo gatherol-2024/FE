@@ -9,9 +9,9 @@ interface TextProps extends HTMLAttributes<HTMLSpanElement> {
   color?: string;
   fontWeight?: CSSProperties["fontWeight"];
 }
-const Text = ({ color = "text", fontWeight, children, whiteSpace = "wrap", type = "base" }: TextProps) => {
+const Text = ({ color = "text", fontWeight, children, whiteSpace = "wrap", type = "base", ...props }: TextProps) => {
   return (
-    <StyledText style={{ whiteSpace, fontWeight }} color={color} type={type}>
+    <StyledText {...props} style={{ whiteSpace, fontWeight }} color={color} type={type}>
       {children}
     </StyledText>
   );
