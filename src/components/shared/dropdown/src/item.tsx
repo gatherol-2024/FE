@@ -5,10 +5,15 @@ import font from "../../../../design-token/font";
 interface DropItemProps {
   children: ReactNode;
   selected?: boolean;
+  onClick?: () => void;
 }
 
-const DropdownItem = ({ selected = false, children }: DropItemProps) => {
-  return <StyledItem selected={selected}>{children}</StyledItem>;
+const DropdownItem = ({ selected = false, onClick, children }: DropItemProps) => {
+  return (
+    <StyledItem selected={selected} onClick={onClick}>
+      {children}
+    </StyledItem>
+  );
 };
 
 const StyledItem = styled.div<{ selected: boolean }>`

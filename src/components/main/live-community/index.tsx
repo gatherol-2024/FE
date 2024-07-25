@@ -6,15 +6,18 @@ import Button from "../../shared/button";
 import { IoPencil } from "react-icons/io5";
 import { useGetBoardList } from "../../../services/board/queries";
 import { BoardType } from "../../../types/board";
+import { useState } from "react";
 const LiveCommunity = () => {
+  const [category, setCategory] = useState("전체");
   const { data, isLoading } = useGetBoardList();
+  console.log(category);
   const BoardList = data?.map((props: BoardType, idx: number) => <BoardItem {...props} key={idx} />);
   return (
     <StyledCommunity>
       <Text type="3xl">라이브 커뮤니티</Text>
       <CommunityMenu>
-        <Dropdown title="전체">
-          <Dropdown.Item selected>전체</Dropdown.Item>
+        <Dropdown title={category} onSelect={setCategory}>
+          <Dropdown.Item>전체</Dropdown.Item>
           <Dropdown.Item>팀 구하기</Dropdown.Item>
           <Dropdown.Item>잡담</Dropdown.Item>
         </Dropdown>
