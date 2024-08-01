@@ -58,7 +58,13 @@ const BOARD_DATA = [
 ];
 
 const boardHandler = [
-  http.get("/mock/board", () => HttpResponse.json(BOARD_DATA)),
+  http.get("/mock/board/:category", ({ params }) => {
+    const { category } = params;
+    console.log(category);
+    const filteredBoard = BOARD_DATA.filter((item) => item.category === category);
+    console.log(filteredBoard);
+    return HttpResponse.json(category === "전체" ? BOARD_DATA : filteredBoard);
+  }),
   http.get("/mock/board/:id", ({ params }) => {
     const { id } = params;
     return HttpResponse.json(BOARD_DATA[Number(id)]);
