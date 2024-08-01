@@ -9,7 +9,7 @@ import { BoardType } from "../../../types/board";
 import { useState } from "react";
 const LiveCommunity = () => {
   const [category, setCategory] = useState("전체");
-  const { data, isLoading } = useGetBoardList();
+  const { data, isLoading } = useGetBoardList(category);
   console.log(category);
   const BoardList = data?.map((props: BoardType, idx: number) => <BoardItem {...props} key={idx} />);
   return (

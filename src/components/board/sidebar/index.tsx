@@ -3,7 +3,7 @@ import Text from "../../shared/text";
 import { useGetBoardList } from "../../../services/board/queries";
 
 const Sidebar = () => {
-  const { data } = useGetBoardList();
+  const { data } = useGetBoardList("전체");
   const BoardList = data?.map(({ title, id }: { title: string; id: number }, idx: number) => (
     <StyledItem href={`/board/detail/${id}`} key={idx}>
       {title}

@@ -1,8 +1,8 @@
 import { server } from "../../api/instance";
 import { CommentType } from "../../types/board";
 
-export const getBoardList = async () => {
-  const { data } = await server.get("/board");
+export const getBoardList = async (category: string) => {
+  const { data } = await server.get(`/board/${category}`);
   return data;
 };
 

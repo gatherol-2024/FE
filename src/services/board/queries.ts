@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getBoardItem, getBoardList } from "./api";
 
-export const useGetBoardList = () => {
+export const useGetBoardList = (category: string) => {
   const { data, ...restQuery } = useQuery({
-    queryKey: ["board"],
-    queryFn: getBoardList,
+    queryKey: ["board", category],
+    queryFn: () => getBoardList(category),
   });
 
   return { data, ...restQuery };
