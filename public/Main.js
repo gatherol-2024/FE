@@ -27,6 +27,9 @@ function createWindow() {
   /*
    * startUrl에 배정되는 url을 맨 위에서 생성한 BrowserWindow에서 실행시킵니다.
    * */
+  win.webContents.openDevTools();
+  const { contextBridge } = require("electron");
+  contextBridge.exposeInMainWorld("IN_DESKTOP_ENV", true);
   win.loadURL(startUrl);
 }
 
