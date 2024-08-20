@@ -2,12 +2,14 @@ import { server } from "../../api/instance";
 import { CommentType } from "../../types/board";
 
 export const getBoardList = async (category: string) => {
-  const { data } = await server.get(`/board/${category}`);
+  const { data } = await server.get(`board/${category}`);
   return data;
 };
 
 export const getBoardItem = async (id: string | undefined) => {
-  const { data } = await server.get(`/board/${id}`);
+  console.log("fid", id);
+  const { data } = await server.get(`board/detail/${id}`);
+  console.log("fdata", data);
   return data;
 };
 

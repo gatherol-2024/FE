@@ -60,13 +60,13 @@ const BOARD_DATA = [
 const boardHandler = [
   http.get("/mock/board/:category", ({ params }) => {
     const { category } = params;
-    console.log(category);
+    console.log("cate", category);
     const filteredBoard = BOARD_DATA.filter((item) => item.category === category);
-    console.log(filteredBoard);
     return HttpResponse.json(category === "전체" ? BOARD_DATA : filteredBoard);
   }),
-  http.get("/mock/board/:id", ({ params }) => {
+  http.get("/mock/board/detail/:id", ({ params }) => {
     const { id } = params;
+    console.log("id", id);
     return HttpResponse.json(BOARD_DATA[Number(id)]);
   }),
   http.post("/mock/comment/add/:id", async ({ request, params }) => {
