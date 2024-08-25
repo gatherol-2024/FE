@@ -1,56 +1,82 @@
 import { useEffect, useState } from "react";
-import { Socket, io } from "socket.io-client";
-import connectSocket from "../utils/socket";
 
 const useVoiceChat = () => {
-  const connect = async () => {
-    await navigator.mediaDevices
-      .getUserMedia({ audio: true, video: false })
-      .then((stream) => {
-        const pc = new RTCPeerConnection();
+  const [teamvoice, setTeamVoice] = useState<Map<string, MediaStreamTrack>>(new Map());
 
-        pc.ontrack = (e) => {
-          if (e.track.kind === "audio") return;
-        };
-        stream.getTracks().forEach((track) => pc.addTrack(track));
-        const socket = connectSocket("test");
-        pc.onicecandidate = (e) => {
-          if (!e.candidate) return;
-
-          socket.send(JSON.stringify({ event: "candidate", data: JSON.stringify(e.candidate) }));
-        };
-
-        socket.on("close", (e) => console.log("socket closed", e));
-
-        socket.on("massage", (e) => {
-          const msg = JSON.parse(e.data);
-
-          if (!msg) return console.log("failed to parse msg", e);
-
-          switch (msg) {
-            case "offer":
-              const offer = JSON.parse(msg.data);
-              if (!offer) return console.log("failed to parse answer");
-              pc.setRemoteDescription(offer);
-              pc.createAnswer().then((answer) => {
-                pc.setLocalDescription(answer);
-                socket.send(JSON.stringify({ event: "answer", data: JSON.stringify(answer) }));
-              });
-              return;
-            case "candidata":
-              const candidata = JSON.parse(msg.data);
-              if (!candidata) return console.log("failed to parse answer");
-
-              pc.addIceCandidate(candidata);
-          }
-
-          socket.on("error", (e) => console.log("ERROR", e.data));
-        });
-      })
-      .catch((e) => console.log("falied to get user audio", e));
+  const addTeamVoice = (id: string, track: MediaStreamTrack) => {
+    setTeamVoice((prevTeamVoice) => {
+      const updatedTeamVoice = new Map(prevTeamVoice);
+      updatedTeamVoice.set(id, track);
+      return updatedTeamVoice;
+    });
   };
 
-  return { connect };
+  const removeTeamVoice = (id: string) => {
+    setTeamVoice((prevTeamVoice) => {
+      const updatedTeamVoice = new Map(prevTeamVoice);
+      updatedTeamVoice.delete(id);
+      return updatedTeamVoice;
+    });
+  };
+
+  const clearTeamVoice = () => setTeamVoice(new Map());
+  const connect = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: false,
+      });
+
+      const pc = new RTCPeerConnection();
+
+      pc.ontrack = (e) => {
+        const { kind, id } = e.track;
+        if (kind === "video") return;
+        addTeamVoice(id, e.track);
+        e.streams[0].onremovetrack = ({ track }) => {
+          removeTeamVoice(track.id);
+        };
+      };
+      stream.getTracks().forEach((track) => pc.addTrack(track, stream));
+
+      const socket = new WebSocket("ws://localhost:8080/websocket");
+
+      pc.onicecandidate = (e) => {
+        if (!e.candidate) return;
+        socket.send(JSON.stringify({ event: "candidate", data: JSON.stringify(e.candidate) }));
+      };
+
+      socket.onmessage = (e) => {
+        const msg = JSON.parse(e.data);
+
+        if (!msg) return console.log("failed to parse msg", e);
+
+        switch (msg.event) {
+          case "offer":
+            const offer = JSON.parse(msg.data);
+            if (!offer) return console.log("failed to parse offer");
+            pc.setRemoteDescription(offer);
+            pc.createAnswer().then((answer) => {
+              pc.setLocalDescription(answer);
+              socket.send(JSON.stringify({ event: "answer", data: JSON.stringify(answer) }));
+            });
+            return;
+          case "candidate":
+            const candidate = JSON.parse(msg.data);
+            if (!candidate) return console.log("failed to parse candidate");
+            pc.addIceCandidate(candidate);
+            return;
+        }
+      };
+
+      socket.onerror = (e) => console.log("ERROR", e);
+      socket.onclose = (e) => console.log("socket closed", e);
+    } catch (e) {
+      console.log("failed to get user audio", e);
+    }
+  };
+
+  return { teamvoice, connect };
 };
 
 export default useVoiceChat;
