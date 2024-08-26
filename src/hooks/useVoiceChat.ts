@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
+import { iceServers } from "../constants/iceServers";
 
 const useVoiceChat = () => {
   const [teamvoice, setTeamVoice] = useState<Map<string, MediaStreamTrack>>(new Map());
+  const [isConnected, setIsConnected] = useState(false);
+  const pc = new RTCPeerConnection({ iceServers: iceServers });
+  // const dataChannel = pc.createDataChannel("userIDChannel", { ordered: false, negotiated: true, id: 1 });
+
+  // 데이터 채널 오픈 시 userID 전송
 
   const addTeamVoice = (id: string, track: MediaStreamTrack) => {
     setTeamVoice((prevTeamVoice) => {
@@ -20,14 +26,19 @@ const useVoiceChat = () => {
   };
 
   const clearTeamVoice = () => setTeamVoice(new Map());
+  const disconnect = () => {
+    pc.close();
+    setIsConnected(false);
+  };
   const connect = async () => {
+    if (isConnected) return;
+    setIsConnected(true);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: true,
         video: false,
       });
-
-      const pc = new RTCPeerConnection();
+      console.log("connecgt");
 
       pc.ontrack = (e) => {
         const { kind, id } = e.track;
@@ -37,7 +48,8 @@ const useVoiceChat = () => {
           removeTeamVoice(track.id);
         };
       };
-      stream.getTracks().forEach((track) => pc.addTrack(track, stream));
+
+      pc.addTrack(stream.getTracks()[0], stream);
 
       const socket = new WebSocket("ws://localhost:8080/websocket");
 
@@ -76,7 +88,7 @@ const useVoiceChat = () => {
     }
   };
 
-  return { teamvoice, connect };
+  return { teamvoice, connect, disconnect };
 };
 
 export default useVoiceChat;
