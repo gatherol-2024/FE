@@ -42,8 +42,8 @@ const StyledProfile = styled.div`
 `;
 
 const ProfileIcon = styled.img`
-  width: 4rem;
-  height: 4rem;
+  width: 2rem;
+  height: 2rem;
 `;
 
 const ChampionImage = styled.img`

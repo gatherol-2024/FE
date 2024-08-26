@@ -14,7 +14,6 @@ const LiveCommunity = () => {
   const BoardList = data?.map((props: BoardType, idx: number) => <BoardItem {...props} key={idx} />);
   return (
     <StyledCommunity>
-      <Text type="3xl">라이브 커뮤니티</Text>
       <CommunityMenu>
         <Dropdown title={category} onSelect={setCategory}>
           <Dropdown.Item>전체</Dropdown.Item>
@@ -32,10 +31,9 @@ const LiveCommunity = () => {
 };
 
 const StyledCommunity = styled.div`
-  padding: 5rem 15rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.5rem;
   align-items: center;
 `;
 const CommunityMenu = styled.div`
