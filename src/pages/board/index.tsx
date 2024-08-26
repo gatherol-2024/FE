@@ -2,19 +2,19 @@ import styled from "styled-components";
 import Content from "../../components/board/content";
 import Sidebar from "../../components/board/sidebar";
 import Comments from "../../components/board/comments";
-import { getBoardById } from "../../services/board/api";
 import { useParams } from "react-router-dom";
-import { useBoard } from "../../services/board/queries";
+import { useBoard } from "../../hooks/useBoard";
 
 const BoardDetail = () => {
   const { id } = useParams();
-  const { data, commentMutate } = useBoard(id);
+  const { boardData, commentMutate } = useBoard(id);
+  console.log("boardData", boardData);
   return (
     <StyledBoard>
       <Sidebar />
       <ContentLayout>
-        <Content {...data} />
-        <Comments addComment={commentMutate} comments={data?.comments} />
+        <Content {...boardData} />
+        <Comments addComment={commentMutate} comments={boardData?.comments} />
       </ContentLayout>
     </StyledBoard>
   );
