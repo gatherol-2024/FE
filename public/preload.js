@@ -1,5 +1,8 @@
 const { contextBridge, ipcRenderer } = require("electron");
+
 contextBridge.exposeInMainWorld("electronAPI", {
-  ipcRenderer: ipcRenderer,
-  test: () => ipcRenderer.on("test", (e, data) => console.log("test", e, data)),
+  getChampSelect: (callback) => ipcRenderer.on("champ-select", callback),
+  getGameSession: (callback) => ipcRenderer.on("game-session", callback),
+  removeChampSelectListener: (callback) => ipcRenderer.removeListener("champ-select", callback),
+  removeGameSessionListener: (callback) => ipcRenderer.removeListener("game-session", callback),
 });

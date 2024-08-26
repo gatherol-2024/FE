@@ -1,36 +1,49 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain, webContents } = require("electron");
+var lc = require("league-connect");
 const path = require("path");
-const url = require("url");
 
 function createWindow() {
-  /*
-   * 넓이 1920에 높이 1080의 FHD 풀스크린 앱을 실행시킵니다.
-   * */
   const win = new BrowserWindow({
     width: 1920,
     height: 1080,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+    },
   });
 
-  /*
-   * ELECTRON_START_URL을 직접 제공할경우 해당 URL을 로드합니다.
-   * 만일 URL을 따로 지정하지 않을경우 (프로덕션빌드) React 앱이
-   * 빌드되는 build 폴더의 index.html 파일을 로드합니다.
-   * */
-  const startUrl =
-    process.env.ELECTRON_START_URL ||
-    url.format({
-      pathname: path.join(__dirname, "/../build/index.html"),
-      protocol: "file:",
-      slashes: true,
-    });
-
-  /*
-   * startUrl에 배정되는 url을 맨 위에서 생성한 BrowserWindow에서 실행시킵니다.
-   * */
+  const startUrl = process.env.ELECTRON_START_URL;
   win.webContents.openDevTools();
-  const { contextBridge } = require("electron");
-  contextBridge.exposeInMainWorld("IN_DESKTOP_ENV", true);
+
+  const getLOLData = async () => {
+    console.log("getLOLData");
+    const ws = await lc.createWebSocketConnection({
+      authenticationOptions: {
+        awaitConnection: {
+          awaitConnection: true,
+          pollInterval: 1000,
+        },
+      },
+    });
+    ws.subscribe("/lol-champ-select/v1/session", (data) => {
+      win.webContents.send("champ-select", { data: data });
+    });
+    ws.subscribe("/lol-gameflow/v1/session", (data) => {
+      win.webContents.send("game-session", { data: data });
+    });
+  };
+  getLOLData();
   win.loadURL(startUrl);
 }
 
-app.on("ready", createWindow);
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
+
+app.on("activate", () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
+});
