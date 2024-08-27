@@ -3,6 +3,8 @@ import Text from "../../shared/text";
 import { IoMicOffOutline, IoHeadsetOutline } from "react-icons/io5";
 import LinkGenerator from "../../../utils/linkGenerator";
 import LinkText from "../../link";
+import useInGame from "../../../hooks/useInGame";
+import { CHAMPIONS } from "../../../constants/champions";
 
 interface ProfileProps {
   position: "TOP" | "JGL" | "MID" | "BOT" | "SUP";
@@ -13,12 +15,18 @@ interface ProfileProps {
 }
 
 const Profile = ({ position, mic = true, headset = true, name, volume = 0 }: ProfileProps) => {
+  const { gameSession, champSelect } = useInGame();
+  console.log(champSelect?.data?.actions[0][4]?.championId);
   return (
     <StyledProfile>
       <ProfileIcon src={`/images/${position}.svg`} />
       <Text type="3xl">{position}</Text>
       <ChampionLayout>
-        <ChampionImage src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg" />
+        <ChampionImage
+          src={`https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/${
+            CHAMPIONS[champSelect?.data?.actions[0][4]?.championId]
+          }.png`}
+        />
         <MicVolume volume={volume} />
       </ChampionLayout>
       <DeviceState>
