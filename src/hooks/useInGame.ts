@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import isElectron from "../utils/isElectron";
 import { IpcRendererEvent } from "electron";
+import { useChampSelectStore, useGameSessionStore } from "../store/ingame";
 
 const useInGame = () => {
-  const [champSelect, setChampSelect] = useState();
-  const [gameSession, setGameSession] = useState();
+  const [champSelect, setChampSelect] = useChampSelectStore();
+  const [gameSession, setGameSession] = useGameSessionStore();
 
   useEffect(() => {
     if (isElectron()) {
