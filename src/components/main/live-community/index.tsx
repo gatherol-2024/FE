@@ -12,14 +12,15 @@ const LiveCommunity = () => {
   const { data, isLoading } = useGetBoardList(category);
   console.log(category);
   const BoardList = data?.map((props: BoardType, idx: number) => <BoardItem {...props} key={idx} />);
+  const Cate = ["전체", "팀 구하기", "잡담"].map((data, idx) => (
+    <Dropdown.Item selected={category == data} onClick={() => setCategory(data)}>
+      {data}
+    </Dropdown.Item>
+  ));
   return (
     <StyledCommunity>
       <CommunityMenu>
-        <Dropdown title={category} onSelect={setCategory}>
-          <Dropdown.Item>전체</Dropdown.Item>
-          <Dropdown.Item>팀 구하기</Dropdown.Item>
-          <Dropdown.Item>잡담</Dropdown.Item>
-        </Dropdown>
+        <Dropdown title={category}>{Cate}</Dropdown>
         <Button color="primary" type="ghost" size="sm">
           글 작성
           <IoPencil />
