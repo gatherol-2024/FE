@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { iceServers } from "../constants/iceServers";
+import { useDeviceValueStore } from "../store/devices";
 
 const useVoiceChat = () => {
   const [teamvoice, setTeamVoice] = useState<Map<string, MediaStreamTrack>>(new Map());
   const [isConnected, setIsConnected] = useState(false);
+  const device = useDeviceValueStore();
   const pc = new RTCPeerConnection({ iceServers: iceServers });
-  // const dataChannel = pc.createDataChannel("userIDChannel", { ordered: false, negotiated: true, id: 1 });
-
-  // 데이터 채널 오픈 시 userID 전송
 
   const addTeamVoice = (id: string, track: MediaStreamTrack) => {
     setTeamVoice((prevTeamVoice) => {
@@ -35,7 +34,7 @@ const useVoiceChat = () => {
     setIsConnected(true);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
+        audio: { deviceId: device.input.deviceId },
         video: false,
       });
       console.log("connecgt");
