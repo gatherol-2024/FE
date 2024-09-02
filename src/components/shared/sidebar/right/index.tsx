@@ -3,8 +3,13 @@ import Text from "../../text";
 import { IoMic, IoHeadset, IoCall, IoSettingsSharp } from "react-icons/io5";
 import Bubble from "./bubble";
 import { useVoiceStore } from "../../../../store/voice";
+import { useState } from "react";
+import VoiceSetting from "../../modal/setting";
+import Modal from "styled-react-modal";
 const RightSideBar = () => {
   const [voice, setVoice] = useVoiceStore();
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleVoiceChange = (device: "mic" | "headset") => {
     const newState = voice;
     return setVoice({ ...newState, [device]: !newState[device] });
@@ -14,7 +19,7 @@ const RightSideBar = () => {
       <Profile>
         <ProfileIcon src="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon5314.jpg?image=e_upscale,q_auto:good,f_webp,w_auto&v=1724034092925" />
         <ProfileInfo>
-          <Text fontWeight="bold">PodoLove</Text>
+          <Text fontWeight="bold">열여섯글자테스트열여섯글자테스트</Text>
           <Tier>
             <img src="https://opgg-static.akamaized.net/images/medals_new/challenger.png?image=q_auto:good,f_webp,w_144&v=1724034092925" />
             <Text type="xs" fontWeight="bold">
@@ -35,15 +40,23 @@ const RightSideBar = () => {
             <Bubble text="통화방 나가기" />
             <IoCall />
           </VoiceBtn>
-          <VoiceBtn>
+          <VoiceBtn onClick={() => setIsOpen(true)}>
             <Bubble text="사용자 설정" />
             <IoSettingsSharp />
           </VoiceBtn>
         </BtnLayout>
       </Profile>
+      <SettingModal isOpen={isOpen} onBackgroundClick={() => setIsOpen(false)}>
+        <VoiceSetting setIsOpen={setIsOpen} />
+      </SettingModal>
     </StyledSideBar>
   );
 };
+
+const SettingModal = Modal.styled`
+  width: fit-content;
+  z-index: 10;
+`;
 
 const StyledSideBar = styled.div`
   flex-shrink: 0;
