@@ -1,21 +1,23 @@
 import { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 interface ItemProps {
   children: ReactNode;
   text: string;
-  active?: boolean;
+  link: string;
 }
-const LeftItem = ({ children, text, active = false }: ItemProps) => {
+const LeftItem = ({ children, text, link }: ItemProps) => {
+  const { pathname } = useLocation();
   return (
-    <StyledItem active={active}>
+    <StyledItem href={link} active={pathname == link}>
       {children}
       {text}
     </StyledItem>
   );
 };
 
-const StyledItem = styled.div<{ active: boolean }>`
+const StyledItem = styled.a<{ active: boolean }>`
   border-radius: 0.25rem;
   align-items: center;
   padding: 0.5rem;
