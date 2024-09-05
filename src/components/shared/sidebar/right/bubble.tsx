@@ -4,12 +4,13 @@ const Bubble = ({ text }: { text: string }) => {
   return (
     <StyledBubble>
       <span>{text}</span>
-      <div></div>
+      <div />
     </StyledBubble>
   );
 };
 
 const StyledBubble = styled.div`
+  z-index: 10;
   padding: 0.5rem;
   border-radius: 0.25rem;
   background-color: ${({ theme }) => theme.background};
