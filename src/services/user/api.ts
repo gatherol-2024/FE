@@ -1,8 +1,12 @@
+import { getCookie } from "../../api/cookie";
 import { server } from "../../api/instance";
-import { Storage } from "../../api/storage";
 
 export const getUser = async () => {
-  const { data } = await server.get(`/user/login/${Storage.getItem("accessToken")}`);
+  const { data } = await server.get("/auth", {
+    headers: {
+      Authorization: `Bearer ${getCookie("refreshToken")}`,
+    },
+  });
 
   return data;
 };

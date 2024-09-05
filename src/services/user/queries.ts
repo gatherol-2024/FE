@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUser } from "./api";
-import { Storage } from "../../api/storage";
+import { getCookie } from "../../api/cookie";
 
 export const useUserQuery = () => {
   const { data, ...restQuery } = useQuery({
     queryKey: ["user"],
     queryFn: getUser,
-    // enabled: !!Storage.getItem("accessToken"),
+    enabled: !!getCookie("accessToken"),
   });
 
-  return { data: data?.data, ...restQuery };
+  return { data: data, ...restQuery };
 };
