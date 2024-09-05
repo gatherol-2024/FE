@@ -6,5 +6,4 @@ export const getDropdownSize = {
   md: sizeGenerator(2.5, 1, 5, "base"),
   lg: sizeGenerator(3, 1.25, 6, "lg"),
   xl: sizeGenerator(3.25, 1.5, 7, "xl"),
-  full: sizeGenerator(3.5, 0.5, 8, "base"),
 };
