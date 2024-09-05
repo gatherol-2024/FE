@@ -4,8 +4,8 @@ import { IoMic, IoHeadset, IoCall, IoSettingsSharp } from "react-icons/io5";
 import Bubble from "./bubble";
 import { useVoiceStore } from "../../../../store/voice";
 import { useState } from "react";
-import VoiceSetting from "../../modal/setting";
 import Modal from "styled-react-modal";
+import Setting from "../../modal/setting";
 const RightSideBar = () => {
   const [voice, setVoice] = useVoiceStore();
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ const RightSideBar = () => {
       <Profile>
         <ProfileIcon src="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon5314.jpg?image=e_upscale,q_auto:good,f_webp,w_auto&v=1724034092925" />
         <ProfileInfo>
-          <Text fontWeight="bold">열여섯글자테스트열여섯글자테스트</Text>
+          <Text fontWeight="bold">열테스트열여섯글자테스트</Text>
           <Tier>
             <img src="https://opgg-static.akamaized.net/images/medals_new/challenger.png?image=q_auto:good,f_webp,w_144&v=1724034092925" />
             <Text type="xs" fontWeight="bold">
@@ -47,7 +47,7 @@ const RightSideBar = () => {
         </BtnLayout>
       </Profile>
       <SettingModal isOpen={isOpen} onBackgroundClick={() => setIsOpen(false)}>
-        <VoiceSetting setIsOpen={setIsOpen} />
+        <Setting setIsOpen={setIsOpen} />
       </SettingModal>
     </StyledSideBar>
   );
@@ -59,6 +59,7 @@ const SettingModal = Modal.styled`
 `;
 
 const StyledSideBar = styled.div`
+  /* overflow-x: hidden; */
   flex-shrink: 0;
   gap: 0.75rem;
   display: flex;
