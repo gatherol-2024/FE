@@ -4,9 +4,7 @@ import "./index.css";
 import App from "./App";
 import { RecoilRoot } from "recoil";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 const enableMocking = async () => {
-  if (process.env.NODE_ENV != "development") return;
   const { worker } = await import("./mocks/server");
   return worker.start({ onUnhandledRequest: "bypass" });
 };
