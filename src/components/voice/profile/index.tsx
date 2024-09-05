@@ -1,41 +1,39 @@
 import styled from "styled-components";
 import Text from "../../shared/text";
-import { IoMicOffOutline, IoHeadsetOutline } from "react-icons/io5";
+import { IoMicOff, IoHeadset } from "react-icons/io5";
 import LinkGenerator from "../../../utils/linkGenerator";
 import LinkText from "../../link";
 import useInGame from "../../../hooks/useInGame";
 import { CHAMPIONS } from "../../../constants/champions";
 
 interface ProfileProps {
-  position: "TOP" | "JGL" | "MID" | "BOT" | "SUP";
-  name: string;
+  assignedPosition: string;
+  championId: number;
+  puuid: string;
   mic?: boolean;
   headset?: boolean;
   volume?: number;
 }
 
-const Profile = ({ position, mic = true, headset = true, name, volume = 0 }: ProfileProps) => {
-  const { gameSession, champSelect } = useInGame();
-  console.log(champSelect?.data?.actions[0][4]?.championId);
+const Profile = ({ assignedPosition, mic = true, headset = true, puuid, championId, volume = 0 }: ProfileProps) => {
   return (
     <StyledProfile>
-      <ProfileIcon src={`/images/${position}.svg`} />
-      <Text type="3xl">{position}</Text>
+      <ProfileIcon src={`/images/${assignedPosition}.svg`} />
+      <Text type="2xl">{assignedPosition}</Text>
       <ChampionLayout>
         <ChampionImage
-          src={`https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/${
-            CHAMPIONS[champSelect?.data?.actions[0][4]?.championId]
-          }.png`}
+          src={`https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/${CHAMPIONS[championId]}.png`}
+          alt="챔피언 이미지"
         />
         <MicVolume volume={volume} />
       </ChampionLayout>
       <DeviceState>
-        {!mic ? <IoMicOffOutline /> : null}
-        {!headset ? <IoHeadsetOutline /> : null}
+        {!mic ? <IoMicOff /> : null}
+        <IoHeadset />
       </DeviceState>
       <NameMenu>
-        <LinkText target="_blank" href={LinkGenerator(name)} type="lg">
-          {name}
+        <LinkText target="_blank" href={"/"} type="lg">
+          {/* {puuid} */}
         </LinkText>
       </NameMenu>
     </StyledProfile>
@@ -55,9 +53,9 @@ const ProfileIcon = styled.img`
 `;
 
 const ChampionImage = styled.img`
-  object-fit: cover;
-  width: 8rem;
-  height: 8rem;
+  object-fit: contain;
+  width: 6rem;
+  height: 6rem;
   border-radius: 9999rem;
   z-index: 2;
 `;
@@ -86,7 +84,7 @@ const DeviceState = styled.div`
   align-items: center;
   height: 3rem;
   & svg {
-    color: ${({ theme }) => theme.danger};
+    color: ${({ theme }) => theme.background500};
     width: 2rem;
     height: 2rem;
   }
