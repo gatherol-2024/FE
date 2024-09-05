@@ -1,6 +1,5 @@
 import boardHandler from "./board";
-import userHandlers from "./user";
 
-const handlers = [...userHandlers, ...boardHandler];
+const handlers = [...boardHandler];
 
 export default handlers;
