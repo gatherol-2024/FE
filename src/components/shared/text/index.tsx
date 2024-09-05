@@ -19,7 +19,8 @@ const Text = ({ color = "text", fontWeight, children, whiteSpace = "wrap", type 
 
 const StyledText = styled.span<{ type: Font; color: string }>`
   ${({ type }) => font[type]}
-  color : ${(props) => props.theme[props.color]}
+  word-break: break-all;
+  color: ${(props) => props.theme[props.color]};
 `;
 
 export default Text;
