@@ -11,39 +11,38 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LeftSideBar from "./components/shared/sidebar/left";
 import RightSideBar from "./components/shared/sidebar/right";
+import { ModalProvider } from "styled-react-modal";
+import { CookiesProvider } from "react-cookie";
 
 function App() {
   const theme = useThemeValueStore();
   return (
-    <ThemeProvider theme={theme === "dark" ? dark : light}>
-      <BrowserRouter>
-        <Container>
-          <LeftSideBar />
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/board/detail/:id" element={<BoardDetail />} />
-              <Route path="/voice" element={<VoicePage />} />
-              <Route path="/login" element={<LoginPage />} />
-            </Routes>
-          </Layout>
-          <RightSideBar />
-        </Container>
-      </BrowserRouter>
-      <ToastContainer limit={1} />
-    </ThemeProvider>
+    <CookiesProvider>
+      <ThemeProvider theme={dark}>
+        <ModalProvider>
+          <BrowserRouter>
+            <LeftSideBar />
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/board/detail/:id" element={<BoardDetail />} />
+                <Route path="/voice" element={<VoicePage />} />
+                <Route path="/login" element={<LoginPage />} />
+              </Routes>
+            </Layout>
+            <RightSideBar />
+          </BrowserRouter>
+          <ToastContainer limit={1} />
+        </ModalProvider>
+      </ThemeProvider>
+    </CookiesProvider>
   );
 }
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-`;
 
 const Layout = styled.div`
   padding: 1.5rem;
   flex: 1;
-  background-color: ${({ theme }) => theme.background50};
+  background-color: ${({ theme }) => theme.background100};
   color: ${({ theme }) => theme.text};
   transition: 0.3s;
 `;
